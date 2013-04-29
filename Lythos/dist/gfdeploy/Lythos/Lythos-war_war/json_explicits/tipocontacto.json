@@ -1,0 +1,6 @@
+
+[
+        {"text" : "Atencion al Cliente", "value":"AC"},
+        {"text":"Servicio Tecnico", "value":"ST"},
+        {"text": "Departamento Contable", "value":"DC"}
+]
