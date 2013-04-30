@@ -36,4 +36,22 @@ public class AutorizacionFacade extends AbstractFacade<Autorizacion> {
         return checking==1;
     }
     
+    public String getNicknameById(int idAut){
+        Query consulta = em.createQuery("SELECT a.nickname FROM Autorizacion a WHERE a.idAutorizacion = :idAut ").setParameter("idAut", idAut);
+        List<Autorizacion> resultados = consulta.getResultList();
+        String salida = null;
+        if(resultados.size()>0)
+            salida = resultados.get(0).toString();
+        return salida;
+    }
+    
+    public int getIdByNickname(String nickname){
+        Query consulta = em.createQuery("SELECT a.idAutorizacion FROM Autorizacion a WHERE a.nickname = :nickname ").setParameter("nickname", nickname);
+        List<Autorizacion> resultados = consulta.getResultList();
+        String salida = null;
+        if(resultados.size()>0)
+            salida = resultados.get(0).toString();
+        return Integer.parseInt(salida);
+    }
+    
 }

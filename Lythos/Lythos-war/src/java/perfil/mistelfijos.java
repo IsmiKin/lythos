@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package api;
+package perfil;
 
-import dao.AutorizacionFacade;
+import dao.TerminalfijoFacade;
+import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKinPorti
+ * @author IsmiKin
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "mistelfijos", urlPatterns = {"/mistelfijos"})
+public class mistelfijos extends HttpServlet {
     @EJB
-    private AutorizacionFacade autFac;
+    private TerminalfijoFacade terminalfijoFacade;
 
     /**
      * Processes requests for both HTTP
@@ -39,22 +39,9 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String nickname = request.getParameter("nickname");
-        String pass = request.getParameter("pass");        
+        /* Ahora mismo usaremos un usuario de prueba , pero habra que cogerlo del Session */
+        String nickname = "Ismikin";
         
-        boolean existe = autFac.checkUsername(nickname, pass);
-        
-        RequestDispatcher rd = null;
-        String pagina ;
-        if(existe)
-            pagina = "/home.jsp";
-        else
-            pagina ="/errorLogin.jsp";
-        
-        request.setAttribute("nickname", nickname);
-        
-        rd = this.getServletContext().getRequestDispatcher(pagina);        
-        rd.forward(request, response);
         
         try {
             /* TODO output your page here. You may use following sample code. */
