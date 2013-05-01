@@ -16,7 +16,7 @@
                     <div class="navbar">
                             <div class="navbar-inner  navbar-fixed-top">
                                     <div class="container-fluid">
-                                             <a class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">Lythos</a>
+                                             <a class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">Proyecto Lythos</a>
                                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                                     <ul class="nav menu-up">
                                                             <li class="menu-home">

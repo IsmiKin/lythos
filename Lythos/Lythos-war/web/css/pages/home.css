@@ -33,6 +33,42 @@ root {
         
 }
 
+.table{
+    margin-left:10%;
+    margin-right: 5%;
+}
+
+.form-insertar{
+    margin-left:20%;
+    margin-right: 10%;
+}
+
+.menu-barra{
+    margin-bottom:  100px;
+}
+
+.content-main{
+    margin-top:110px;
+}
+
+
+#footer{
+    background-image:  url(../../img/dark_mosaic.png);
+    background-repeat:  repeat;
+    padding: 30px;
+    height: 150px;
+}
+
+#footer img{
+    height:80px;
+}
+
+.meteor-footer{
+    color:  #f7f7f7;
+    font-size:  large;
+        
+}
+
 /* LIST #4 */
 #list4 { width:220px; font-family:Georgia, Times, serif; font-size:15px; }
 #list4 ul { list-style: none; }

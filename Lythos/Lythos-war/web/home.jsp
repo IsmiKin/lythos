@@ -11,12 +11,13 @@
 <!-- http://www.kendoui.com/jsp/tags -->
 <%@taglib prefix="kendo" uri="http://www.kendoui.com/jsp/tags"%>
 
+    
+
     <shared:headerlibs></shared:headerlibs>
-    <shared:headeruser></shared:headeruser>
+    <shared:headeradmin></shared:headeradmin>
 
     
     <% 
-     
            String checking = request.getParameter("checkUser");           
            System.out.println("Se ha logueado? :"+checking);
      %>
@@ -27,7 +28,7 @@
      <script>$(".menu-home").addClass("active");</script>
      
     
-    <div class="row-fluid">
+    <div class="content-main row-fluid">
             <div class="span8 column">
             </div>
 
