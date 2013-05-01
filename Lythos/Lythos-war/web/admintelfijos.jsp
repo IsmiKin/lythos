@@ -25,7 +25,9 @@
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
      
-     <script>$(".menu-terminales").addClass("active");</script>
+     <script>
+         $(".menu-terminales").addClass("active");
+     </script>
      
     
     
@@ -43,7 +45,7 @@
                             <th>Modelo</th>
                             <th>Usuario</th>                            
                             <th>Linea</th>
-                            <th>Acciones <button class="btn btn-info" >Insertar</button> </th>                            
+                            <th>Acciones <a href="telfijos/formTelFijos"><button class="btn btn-info" >Insertar</button></a> </th>                            
                         </tr>
                     </thead>
                     <tbody>

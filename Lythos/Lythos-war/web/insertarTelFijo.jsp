@@ -4,6 +4,7 @@
     Author     : IsmiKin
 --%>
 
+<%@page import="entidades.Modelofijo"%>
 <%@page import="entidades.Terminalfijo"%>
 <%@page import="entidades.Terminalfijo"%>
 <%@page import="java.util.Iterator"%>
@@ -20,7 +21,7 @@
     <shared:headeradmin></shared:headeradmin>
     
     
-  <%    Collection collection = (Collection)request.getAttribute("todosTerminales");	   %>
+  <%    Collection modelos = (Collection)request.getAttribute("modelos");	   %>
  
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
@@ -45,8 +46,10 @@
                     <br>
                     <select name="Modelo">
                         <option></option>
-                        <option>Prueba</option>
-                        <option>Prueba2</option>
+                         <% for (Iterator iter = modelos.iterator(); iter.hasNext();) {
+                                                               Modelofijo modelo = (Modelofijo) iter.next(); %>
+                        <option value="<%= modelo.getIdModeloFijo() %>"><%= modelo.getModelo() %></option>
+                        <% } %>
                     </select>
                     
                 </form>
