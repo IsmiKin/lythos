@@ -4,6 +4,7 @@
     Author     : IsmiKin
 --%>
 
+<%@page import="entidades.Usuario"%>
 <%@page import="entidades.Modelofijo"%>
 <%@page import="entidades.Terminalfijo"%>
 <%@page import="entidades.Terminalfijo"%>
@@ -21,7 +22,10 @@
     <shared:headeradmin></shared:headeradmin>
     
     
-  <%    Collection modelos = (Collection)request.getAttribute("modelos");	   %>
+  <%    
+      Collection modelos = (Collection)request.getAttribute("modelos");	   
+      Collection usuarios = (Collection)request.getAttribute("usuarios");	   
+  %>
  
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
@@ -37,18 +41,21 @@
                 
                 <form class="form-insertar">
                     <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" type="text" class="input-large" placeholder="Codigo" required><br>
-                    <label for="Modelo"><strong>Modelo</strong></label>
-                    <select name="Modelo">
-                        <option></option>
-                        <option>Prueba</option>
-                        <option>Prueba2</option>
-                    </select>
-                    <br>
+                    <label for="Modelo"><strong>Modelo</strong></label>                                       
                     <select name="Modelo">
                         <option></option>
                          <% for (Iterator iter = modelos.iterator(); iter.hasNext();) {
                                                                Modelofijo modelo = (Modelofijo) iter.next(); %>
                         <option value="<%= modelo.getIdModeloFijo() %>"><%= modelo.getModelo() %></option>
+                        <% } %>
+                    </select>                    
+                    
+                    <label for="Usuario"><strong>Usuario</strong></label>                                       
+                    <select name="Usuario">
+                        <option></option>
+                         <% for (Iterator iter = usuarios.iterator(); iter.hasNext();) {
+                                                               Usuario user = (Usuario) iter.next(); %>
+                        <option value="<%= user.getIdUsuario() %>"><%= user.getNombre()  %></option>
                         <% } %>
                     </select>
                     

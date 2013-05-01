@@ -19,7 +19,7 @@
                     <li > <a href="#"> Lineas </a> </li>
                     <li > <a href="#"> Contabilidad </a> </li>
                     <li > <a href="#"> Listin Telefonico </a> </li>
-                    <li > <a href="#"> Usuarios </a> </li>
+                    <li > <a href="usuarios/admin">Usuarios</a>  </a> </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle menu-terminales" data-toggle="dropdown">Terminales <b class="caret"></b></a>
                         <ul class="dropdown-menu">

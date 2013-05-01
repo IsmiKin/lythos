@@ -2,13 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package telfijos;
+package usuarios;
 
-import dao.LineaFacade;
-import dao.ModelofijoFacade;
 import dao.UsuarioFacade;
-import entidades.Linea;
-import entidades.Modelofijo;
 import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,16 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKin
+ * @author IsmiKinPorti
  */
-@WebServlet(name = "formTelFijos", urlPatterns = {"/telfijos/formTelFijos"})
-public class formTelFijos extends HttpServlet {
-    @EJB
-    private LineaFacade lineaFacade;
+@WebServlet(name = "adminUsuarios", urlPatterns = {"/usuarios/admin"})
+public class adminUsuarios extends HttpServlet {
     @EJB
     private UsuarioFacade usuarioFacade;
-    @EJB
-    private ModelofijoFacade modelofijoFacade;
 
     /**
      * Processes requests for both HTTP
@@ -49,22 +41,18 @@ public class formTelFijos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-       List<Modelofijo> modelos = modelofijoFacade.findAll();
-       List<Usuario> usuarios = usuarioFacade.findAll();
-       //List<Linea> lineas = lineaFacade.findAll();
+        List<Usuario> todos = usuarioFacade.findAll();
         
-       request.setAttribute("modelos", modelos);
-       request.setAttribute("usuarios", usuarios);
-       //request.setAttribute("lineas", lineas);
-       
-       RequestDispatcher rd=null; 
+        request.setAttribute("todosUsuarios", todos);
         
-        rd = this.getServletContext().getRequestDispatcher("/insertarTelFijo.jsp");        
+        RequestDispatcher rd=null;
+        
+        rd = this.getServletContext().getRequestDispatcher("/adminusuarios.jsp");        
         rd.forward(request, response);
-       
+        
         try {
             /* TODO output your page here. You may use following sample code. */
-          
+            
         } finally {            
             out.close();
         }
