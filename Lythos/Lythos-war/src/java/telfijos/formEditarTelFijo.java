@@ -6,9 +6,11 @@ package telfijos;
 
 import dao.LineaFacade;
 import dao.ModelofijoFacade;
+import dao.TerminalfijoFacade;
 import dao.UsuarioFacade;
 import entidades.Linea;
 import entidades.Modelofijo;
+import entidades.Terminalfijo;
 import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,16 +25,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKin
+ * @author IsmiKinPorti
  */
-@WebServlet(name = "formTelFijos", urlPatterns = {"/telfijos/formTelFijos"})
-public class formTelFijos extends HttpServlet {
+@WebServlet(name = "formEditarTelFijo", urlPatterns = {"/telfijos/formEditar"})
+public class formEditarTelFijo extends HttpServlet {
     @EJB
     private LineaFacade lineaFacade;
     @EJB
     private UsuarioFacade usuarioFacade;
     @EJB
     private ModelofijoFacade modelofijoFacade;
+    @EJB
+    private TerminalfijoFacade terminalfijoFacade;
 
     /**
      * Processes requests for both HTTP
@@ -49,22 +53,26 @@ public class formTelFijos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-       List<Modelofijo> modelos = modelofijoFacade.findAll();
-       List<Usuario> usuarios = usuarioFacade.findAll();
-       List<Linea> lineas = lineaFacade.findAll();
+        String idTelFijo = request.getParameter("idTerminalFijo");
         
-       request.setAttribute("modelos", modelos);
-       request.setAttribute("usuarios", usuarios);
-       request.setAttribute("lineas", lineas);
-       
-       RequestDispatcher rd=null; 
+        Terminalfijo aEditar = terminalfijoFacade.find(Integer.parseInt(idTelFijo));
+        List<Modelofijo> modelos = modelofijoFacade.findAll();
+        List<Usuario> usuarios = usuarioFacade.findAll();
+        List<Linea> lineas = lineaFacade.findAll();
         
-        rd = this.getServletContext().getRequestDispatcher("/insertarTelFijo.jsp");        
+        request.setAttribute("modelos", modelos);
+        request.setAttribute("usuarios", usuarios);
+        request.setAttribute("lineas", lineas);
+        
+        request.setAttribute("terminal", aEditar);
+        
+        RequestDispatcher rd=null; 
+        
+        rd = this.getServletContext().getRequestDispatcher("/editarTelFijo.jsp");       
         rd.forward(request, response);
-       
+        
         try {
-            /* TODO output your page here. You may use following sample code. */
-          
+            
         } finally {            
             out.close();
         }

@@ -25,6 +25,7 @@
                         <ul class="dropdown-menu">
                             <li class="nav-header">Terminales Fijos</li>
                           <li><a href="telfijos/admin">Administrar</a></li>                          
+                          <li><a href="telfijos/formTelFijos">Insertar</a></li>                          
                           <li class="divider"></li>
                           <li class="nav-header">Terminales Moviles</li>
                           <li><a href="telfijos/admin">Administrar</a></li>                          

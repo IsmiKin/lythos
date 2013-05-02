@@ -27,6 +27,7 @@
       Collection modelos = (Collection)request.getAttribute("modelos");	   
       Collection usuarios = (Collection)request.getAttribute("usuarios");	   
       Collection lineas = (Collection)request.getAttribute("lineas");	   
+      Terminalfijo terminal = (Terminalfijo)request.getAttribute("terminal");	   
   %>
  
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
@@ -39,16 +40,17 @@
     <div class="content-main row-fluid">
             <div class="span8 column">
                 
-                <center><img src="img/insertartelfijo.png"></center><br>
+                <center><img src="img/editelfijos.png"></center><br>
                 
-                <form class="form-insertar" action="telfijos/insertar" method="POST">
-                    <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" type="text" class="input-large" placeholder="Codigo" required><br>
+                <form class="form-insertar" action="telfijos/editar" method="POST">
+                    <input type="hidden" name="idTerminal" value="<%= terminal.getIdTerminalFijo() %>">
+                    <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" type="text" class="input-large" placeholder="Codigo" required value="<%= terminal.getCodigo() %>" /><br>
                     <label for="Modelo"><strong>Modelo</strong></label>                                       
                     <select name="Modelo">
                         <option></option>
                          <% for (Iterator iter = modelos.iterator(); iter.hasNext();) {
                                                                Modelofijo modelo = (Modelofijo) iter.next(); %>
-                        <option value="<%= modelo.getIdModeloFijo() %>"><%= modelo.getModelo() %></option>
+                        <option value="<%= modelo.getIdModeloFijo() %>" <% if((terminal.getModeloFijoidModeloFijo()!=null) &&(modelo.getIdModeloFijo()==terminal.getModeloFijoidModeloFijo().getIdModeloFijo() )){  %> selected <% } %>  ><%= modelo.getModelo() %></option>
                         <% } %>
                     </select>                    
                     
@@ -57,7 +59,7 @@
                         <option></option>
                          <% for (Iterator iter = usuarios.iterator(); iter.hasNext();) {
                                                                Usuario user = (Usuario) iter.next(); %>
-                        <option value="<%= user.getIdUsuario() %>"><%= user.getNombre()  %></option>
+                        <option value="<%= user.getIdUsuario() %>" <% if((terminal.getUsuarioidUsuario()!=null) &&(user.getIdUsuario()==terminal.getUsuarioidUsuario().getIdUsuario())){  %> selected <% } %> ><%= user.getNombre()  %></option>
                         <% } %>
                     </select>
                     
@@ -66,18 +68,18 @@
                         <option></option>
                          <% for (Iterator iter = lineas.iterator(); iter.hasNext();) {
                                                                Linea linea = (Linea) iter.next(); %>
-                        <option value="<%= linea.getIdLinea() %>"><%= linea.getNumero()  %></option>
+                        <option value="<%= linea.getIdLinea() %>" <% if((terminal.getLineaidLinea()!=null) &&(linea.getIdLinea()==terminal.getLineaidLinea().getIdLinea())){  %> selected <% } %> >  <%= linea.getNumero()  %> </option>
                         <% } %>
                     </select>
                     
                     <br>
-                    <button class="btn btn-info" type="submit">Insertar</button>
+                    <button class="btn btn-info" type="submit">Editar</button>
                     <a href="telfijos/admin"<button class="btn btn-danger" type="button">Cancelar</button></a>
                     
                 </form>
                 
             </div>
-
+   
 
     <shared:menuuser></shared:menuuser>
 

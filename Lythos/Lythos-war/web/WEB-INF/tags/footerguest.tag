@@ -63,7 +63,7 @@
                       <!--</div>-->
 
                         <div class="modal-footer">
-                        Proyecto Hermes - 2013
+                        Proyecto Lythos - 2013
                       </div>
                    
                     </div>

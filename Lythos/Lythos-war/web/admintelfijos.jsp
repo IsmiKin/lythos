@@ -4,6 +4,7 @@
     Author     : IsmiKin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="entidades.Terminalfijo"%>
 <%@page import="entidades.Terminalfijo"%>
 <%@page import="java.util.Iterator"%>
@@ -26,7 +27,18 @@
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
      
      <script>
-         $(".menu-terminales").addClass("active");
+         $(document).ready(function(){
+             $(".menu-terminales").addClass("active");
+             
+             // jQuery Time Beaches
+             
+             $(".eliminarEnTabla").click(function(){                 
+                 $("#idAEliminar").val($(this).attr("idterminal"));
+                 $(".elimCodigo").text($(this).attr("codigoterminal"));
+             });
+             
+         });
+         
      </script>
      
     
@@ -50,19 +62,33 @@
                     </thead>
                     <tbody>
                             
-                        
                             <% for (Iterator iter = collection.iterator(); iter.hasNext();) {
                                                                Terminalfijo element = (Terminalfijo) iter.next(); %>
-                                            
+                                                               
                                         <tr>
                                             <td><%= element.getIdTerminalFijo() %></td>
                                             <td><%= element.getCodigo() %></td>
-                                            <td><%= element.getModeloFijoidModeloFijo() %></td>
-                                            <td><%= element.getUsuarioidUsuario() %></td>
-                                            <td><%= element.getLineaidLinea() %></td>
+                                            <td> 
+                                                <%    if(element.getModeloFijoidModeloFijo()!=null){                                %>
+                                                    <%= element.getModeloFijoidModeloFijo().getModelo() %>
+                                                <% } else{ %> Sin asignar <% } %>
+                                            </td>
                                             <td>
-                                                <button class="btn" >Editar</button>
-                                                <button class="btn btn-danger" >Eliminar</button>                                                
+                                                <% if(element.getUsuarioidUsuario()!=null){ %>
+                                                    <%= element.getUsuarioidUsuario().getNombre() %>
+                                                 <% } else{ %> Sin asignar <% } %>
+                                            </td>
+                                            <td>
+                                                 <% if(element.getLineaidLinea()!=null){ %>
+                                                    <%= element.getLineaidLinea().getNumero() %>
+                                                 <% }else{ %> Sin asignar <% } %>
+                                            </td>
+                                            <td>
+                                                <!-- AVISO AL LECTOR: NO ME GUSTA TENER QUE USAR ANLCA "A" Y METODO GET ... 
+                                                        ES FEO, PERO TAMPOCO QUIERO USAR JAVASCIPT  -->
+                                                <a href="telfijos/formEditar?idTerminalFijo=<%= element.getIdTerminalFijo() %>"<button class="btn" >Editar</button>
+                                                <%--<a href="telfijos/formEliminar?idTerminalFijo=<%= element.getIdTerminalFijo() %>"<button class="btn btn-danger" >Eliminar</button>   --%>
+                                                <a href="#advertencia-eliminar" role="button" codigoTerminal="<%= element.getCodigo() %>"  idTerminal="<%= element.getIdTerminalFijo() %>" class="btn btn-danger eliminarEnTabla" data-toggle="modal">Eliminar</a>
                                             </td>
                                         </tr>
                               
@@ -72,7 +98,30 @@
                 
             </div>
 
-
+            
+                <div id="advertencia-eliminar" class="advertencia-eliminar modal hide fade">
+                    <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                     <h3>Advertencia</h3>
+                    </div>
+                    <div class="modal-body">
+                    <p>Esta apunto de eliminar el terminal fijo con <u>Codigo</u>:</p>
+                    <font color="red"><h2><center><strong><div class="elimCodigo"></div></strong><br></center></h2></font>
+                    <h4>¿Estas seguro de que quiere hacerlo?</h4>
+                    </div>
+                    <div class="modal-footer">
+                      
+                      <form id="eliminarFinal" action="telfijos/eliminar" method="POST">
+                          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                          <input type="hidden" name="idAEliminar" id="idAEliminar" >
+                          <button type="submit"  class="btn btn-danger">Eliminar</a>
+                      </form>
+                      
+                      
+                    </div>
+              </div>
+     
+                      
     <shared:menuuser></shared:menuuser>
 
     </div>

@@ -4,7 +4,10 @@
  */
 package telfijos;
 
+import dao.LineaFacade;
+import dao.ModelofijoFacade;
 import dao.TerminalfijoFacade;
+import dao.UsuarioFacade;
 import entidades.Terminalfijo;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +25,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "insertarTelFijo", urlPatterns = {"/telfijos/insertar"})
 public class insertarTelFijo extends HttpServlet {
+    @EJB
+    private LineaFacade lineaFacade;
+    @EJB
+    private UsuarioFacade usuarioFacade;
+    @EJB
+    private ModelofijoFacade modelofijoFacade;
     @EJB
     private TerminalfijoFacade terminalfijoFacade;
 
@@ -43,10 +52,18 @@ public class insertarTelFijo extends HttpServlet {
         String Codigo = request.getParameter("Codigo");
         String Modelo = request.getParameter("Modelo");
         String Usuario = request.getParameter("Usuario");
+        String Linea = request.getParameter("Linea");
         
         Terminalfijo nuevo = new Terminalfijo();
         
         nuevo.setCodigo(Codigo);                 
+        
+        if (Modelo!="")
+            nuevo.setModeloFijoidModeloFijo(modelofijoFacade.find(Integer.parseInt(Modelo)));        
+        if(Usuario!="")
+            nuevo.setUsuarioidUsuario(usuarioFacade.find(Integer.parseInt(Usuario)));
+        if(Linea!="")
+            nuevo.setLineaidLinea(lineaFacade.find(Integer.parseInt(Linea)));
         
         terminalfijoFacade.create(nuevo);               
         

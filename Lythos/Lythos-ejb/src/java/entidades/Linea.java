@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Linea.findAll", query = "SELECT l FROM Linea l"),
     @NamedQuery(name = "Linea.findByIdLinea", query = "SELECT l FROM Linea l WHERE l.idLinea = :idLinea"),
     @NamedQuery(name = "Linea.findByNumero", query = "SELECT l FROM Linea l WHERE l.numero = :numero"),
-    @NamedQuery(name = "Linea.findByTipo", query = "SELECT l FROM Linea l WHERE l.tipo = :tipo"),
-    @NamedQuery(name = "Linea.findByIp", query = "SELECT l FROM Linea l WHERE l.ip = :ip"),
+    @NamedQuery(name = "Linea.findByTipo", query = "SELECT l FROM Linea l WHERE l.tipo = :tipo"),    
     @NamedQuery(name = "Linea.findByPais", query = "SELECT l FROM Linea l WHERE l.pais = :pais")})
 public class Linea implements Serializable {
     @Size(max = 45)
@@ -54,10 +53,7 @@ public class Linea implements Serializable {
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Tipo")
-    private String tipo;
-    @Size(max = 45)
-    @Column(name = "IP")
-    private String ip;
+    private String tipo;   
     @Size(max = 45)
     @Column(name = "Pais")
     private String pais;
@@ -105,15 +101,7 @@ public class Linea implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
+    
     public String getPais() {
         return pais;
     }

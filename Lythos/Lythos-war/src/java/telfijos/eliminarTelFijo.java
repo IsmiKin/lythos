@@ -4,15 +4,10 @@
  */
 package telfijos;
 
-import dao.LineaFacade;
-import dao.ModelofijoFacade;
-import dao.UsuarioFacade;
-import entidades.Linea;
-import entidades.Modelofijo;
-import entidades.Usuario;
+import dao.TerminalfijoFacade;
+import entidades.Terminalfijo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,16 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKin
+ * @author IsmiKinPorti
  */
-@WebServlet(name = "formTelFijos", urlPatterns = {"/telfijos/formTelFijos"})
-public class formTelFijos extends HttpServlet {
+@WebServlet(name = "eliminarTelFijo", urlPatterns = {"/telfijos/eliminar"})
+public class eliminarTelFijo extends HttpServlet {
     @EJB
-    private LineaFacade lineaFacade;
-    @EJB
-    private UsuarioFacade usuarioFacade;
-    @EJB
-    private ModelofijoFacade modelofijoFacade;
+    private TerminalfijoFacade terminalfijoFacade;
 
     /**
      * Processes requests for both HTTP
@@ -49,22 +40,18 @@ public class formTelFijos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-       List<Modelofijo> modelos = modelofijoFacade.findAll();
-       List<Usuario> usuarios = usuarioFacade.findAll();
-       List<Linea> lineas = lineaFacade.findAll();
+        Terminalfijo aEliminar = terminalfijoFacade.find(Integer.parseInt(request.getParameter("idAEliminar")));
         
-       request.setAttribute("modelos", modelos);
-       request.setAttribute("usuarios", usuarios);
-       request.setAttribute("lineas", lineas);
-       
-       RequestDispatcher rd=null; 
+        terminalfijoFacade.remove(aEliminar);
         
-        rd = this.getServletContext().getRequestDispatcher("/insertarTelFijo.jsp");        
+        RequestDispatcher rd=null; 
+         
+        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin");       
         rd.forward(request, response);
-       
+        
         try {
             /* TODO output your page here. You may use following sample code. */
-          
+           
         } finally {            
             out.close();
         }

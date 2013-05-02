@@ -6,13 +6,11 @@ package telfijos;
 
 import dao.LineaFacade;
 import dao.ModelofijoFacade;
+import dao.TerminalfijoFacade;
 import dao.UsuarioFacade;
-import entidades.Linea;
-import entidades.Modelofijo;
-import entidades.Usuario;
+import entidades.Terminalfijo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,10 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKin
+ * @author IsmiKinPorti
  */
-@WebServlet(name = "formTelFijos", urlPatterns = {"/telfijos/formTelFijos"})
-public class formTelFijos extends HttpServlet {
+@WebServlet(name = "editarTelFijo", urlPatterns = {"/telfijos/editar"})
+public class editarTelFijo extends HttpServlet {
+    @EJB
+    private TerminalfijoFacade terminalfijoFacade;
     @EJB
     private LineaFacade lineaFacade;
     @EJB
@@ -49,22 +49,33 @@ public class formTelFijos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-       List<Modelofijo> modelos = modelofijoFacade.findAll();
-       List<Usuario> usuarios = usuarioFacade.findAll();
-       List<Linea> lineas = lineaFacade.findAll();
+        String Codigo = request.getParameter("Codigo");
+        String Modelo = request.getParameter("Modelo");
+        String Usuario = request.getParameter("Usuario");
+        String Linea = request.getParameter("Linea");
+        String idTerminal = request.getParameter("idTerminal");
         
-       request.setAttribute("modelos", modelos);
-       request.setAttribute("usuarios", usuarios);
-       request.setAttribute("lineas", lineas);
-       
-       RequestDispatcher rd=null; 
+        Terminalfijo editado = terminalfijoFacade.find(Integer.parseInt(idTerminal));
         
-        rd = this.getServletContext().getRequestDispatcher("/insertarTelFijo.jsp");        
+        editado.setCodigo(Codigo);                 
+        
+        if (Modelo!="")
+            editado.setModeloFijoidModeloFijo(modelofijoFacade.find(Integer.parseInt(Modelo)));        
+        if(Usuario!="")
+            editado.setUsuarioidUsuario(usuarioFacade.find(Integer.parseInt(Usuario)));
+        if(Linea!="")
+            editado.setLineaidLinea(lineaFacade.find(Integer.parseInt(Linea)));
+        
+        terminalfijoFacade.edit(editado);
+        
+        RequestDispatcher rd=null; 
+        
+        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin");       
         rd.forward(request, response);
-       
+        
         try {
             /* TODO output your page here. You may use following sample code. */
-          
+           
         } finally {            
             out.close();
         }
