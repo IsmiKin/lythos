@@ -39,7 +39,7 @@
                 
                 <center><img src="img/admintelfijos.png"></center><br>
                 
-                <form class="form-insertar">
+                <form class="form-insertar" action="telfijos/insertar" method="POST">
                     <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" type="text" class="input-large" placeholder="Codigo" required><br>
                     <label for="Modelo"><strong>Modelo</strong></label>                                       
                     <select name="Modelo">
@@ -58,6 +58,14 @@
                         <option value="<%= user.getIdUsuario() %>"><%= user.getNombre()  %></option>
                         <% } %>
                     </select>
+                    
+                    <label for="Linea"><strong>Linea</strong></label>                                       
+                    <select name="Linea">
+                        <option></option>
+                    </select>
+                    
+                    <br>
+                    <button class="btn btn-info" type="submit">Insertar</button>
                     
                 </form>
                 

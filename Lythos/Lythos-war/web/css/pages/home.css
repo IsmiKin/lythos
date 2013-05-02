@@ -69,6 +69,10 @@ root {
         
 }
 
+.main-content-left{
+    padding-right: 10%;
+}
+
 /* LIST #4 */
 #list4 { width:220px; font-family:Georgia, Times, serif; font-size:15px; }
 #list4 ul { list-style: none; }

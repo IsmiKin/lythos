@@ -32,7 +32,7 @@
     
     
     <div class="content-main row-fluid">
-            <div class="span8 column">
+            <div class="content-main-left span8 column">
                 
                 <center><img src="img/admintelfijos.png"></center><br>
                 

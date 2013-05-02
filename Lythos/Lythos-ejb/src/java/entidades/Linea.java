@@ -36,6 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Linea.findByIp", query = "SELECT l FROM Linea l WHERE l.ip = :ip"),
     @NamedQuery(name = "Linea.findByPais", query = "SELECT l FROM Linea l WHERE l.pais = :pais")})
 public class Linea implements Serializable {
+    @Size(max = 45)
+    @Column(name = "VoIP")
+    private String voIP;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -168,6 +171,14 @@ public class Linea implements Serializable {
     @Override
     public String toString() {
         return "entidades.Linea[ idLinea=" + idLinea + " ]";
+    }
+
+    public String getVoIP() {
+        return voIP;
+    }
+
+    public void setVoIP(String voIP) {
+        this.voIP = voIP;
     }
     
 }
