@@ -1,0 +1,34 @@
+<%-- 
+    Document   : menuBarRol
+    Created on : 03-may-2013, 12:40:30
+    Author     : IsmiKinPorti
+--%>
+
+
+          
+    <% 
+          
+          // La variable de nivelSeguridad la ponemos a mano para decidir hasta que rol puede entrar en esta pagina
+         // String nivelSeguridad = [0-3], Administrador = 0, Controlador = 1, JefeServicio = 2, Usuario = 3
+          HttpSession sesion = request.getSession(false);
+          String rol = (String)sesion.getAttribute("rol");
+          Integer rolNumber = (Integer)sesion.getAttribute("rolNumber");
+          if (session == null) {
+                // Not created yet. Now do so yourself.
+                if(nivelSeguridad<4)
+                    response.sendRedirect("errorLogin.jsp");
+            } else {
+                // Already created. 
+                if(nivelSeguridad>rolNumber){                    
+                    
+                if(rol.equals("Administrador")){ %>
+                            <shared:headeradmin></shared:headeradmin>
+           <%  }
+                }
+                else
+                    response.sendRedirect("errorLogin.jsp");
+                
+                
+            }
+     %>
+     

@@ -34,7 +34,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     }
     
     public Usuario getUserByAuto(Autorizacion autori){
-        System.out.println(autori.getIdAutorizacion());
+        
         Query consulta = em.createQuery("SELECT u FROM Usuario u WHERE u.autorizacionidAutorizacion = :idUser ").setParameter("idUser", autori);
         Usuario resultado = (Usuario) consulta.getSingleResult();        
         return resultado;

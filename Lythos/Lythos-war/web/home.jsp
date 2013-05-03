@@ -8,51 +8,32 @@
 
 <%@taglib prefix="shared" tagdir="/WEB-INF/tags" %>
 
-<!-- http://www.kendoui.com/jsp/tags -->
 <%@taglib prefix="kendo" uri="http://www.kendoui.com/jsp/tags"%>
     
-    <shared:headerlibs></shared:headerlibs>
-  <%--  <shared:headeradmin></shared:headeradmin> --%>
+    <!-- LIBRERIAS ESENCIALES -->
+    <shared:headerlibs></shared:headerlibs>  
         
-             
-    <% 
-          int nivelSeguridad = 3;
-          // La variable de nivelSeguridad la ponemos a mano para decidir hasta que rol puede entrar en esta pagina
-         // String nivelSeguridad = [0-3], Administrador = 0, Controlador = 1, JefeServicio = 2, Usuario = 3
-          HttpSession sesion = request.getSession(false);
-          String rol = (String)sesion.getAttribute("rol");
-          Integer rolNumber = (Integer)sesion.getAttribute("rolNumber");
-          if (session == null) {
-                // Not created yet. Now do so yourself.
-                response.sendRedirect("errorLogin.jsp");
-            } else {
-                // Already created. 
-                if(nivelSeguridad>rolNumber){                    
-                    
-                if(rol.equals("Administrador")){ %>
-                        <shared:headeradmin></shared:headeradmin>
-                  <%  }               
-                
-                }
-                else
-                    response.sendRedirect("errorLogin.jsp");
-                
-                
-            }
-     %>
-     <%= rol %>
-     <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
-     <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
+    <!--   La variable nivelSeguridad es requerida en menuBarRol.jsp para verificar que tipo de Rol puede acceder a esta pagina 
+            Si la pagina es publica debes usar el nivel de Seguridad 4 (invitado) 
+            Dependiendo del rol lanzara un menubar u otro
+       -->
+    
+    <% int nivelSeguridad = 3; %>
+    
+    <%@include  file="menuBarRol.jsp" %>
+               
+     <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby 
+           Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
      
      <script>$(".menu-home").addClass("active");</script>
      
     
     <div class="content-main row-fluid">
-            <div class="span8 column">
+            <div class="content-main-left span8 column">
             </div>
 
-
-    <shared:menuuser></shared:menuuser>
+    
+    <%@include  file="menuRightRol.jsp" %>  
 
     </div>
     

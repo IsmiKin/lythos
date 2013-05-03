@@ -62,7 +62,7 @@ public class login extends HttpServlet {
             Usuario usuario = usuarioFacade.getUserByAuto(autori);
             session.setAttribute("nickname", nickname);
             session.setAttribute("nombre",usuario.getNombre() );
-            session.setAttribute("rol",usuario.getRol());
+            session.setAttribute("rol",usuario.getRol()); 
             if("Administrador".equals(usuario.getRol()))
                 session.setAttribute("rolNumber",0);
             else if("Controlador".equals(usuario.getRol()))
@@ -71,6 +71,8 @@ public class login extends HttpServlet {
                 session.setAttribute("rolNumber",2);
             else if("Usuario".equals(usuario.getRol()))
                 session.setAttribute("rolNumber",3);
+           else
+                session.setAttribute("rolNumber",4);
             
             pagina = "/home.jsp";
         }

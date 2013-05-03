@@ -18,10 +18,23 @@
 <%@taglib prefix="kendo" uri="http://www.kendoui.com/jsp/tags"%>
 
     <shared:headerlibs></shared:headerlibs>
-    <shared:headeradmin></shared:headeradmin>
+    
+    <!-- Anotacion : Esta vista puede verla el Controlador y el Administrador, pero para el Controlador es solo de vista ,
+                            asi que las acciones las "filtrarermos" en vivo -->
+    
+    <% int nivelSeguridad = 1; %>
+    
+    <%@include  file="menuBarRol.jsp" %>
     
     
-  <%    Collection collection = (Collection)request.getAttribute("todosTerminales");	   %>
+    
+  <%    
+        // Si ha pasado el menuBarRol quiere decir que ya tenemos Sesion
+        
+        Integer rolNumberUsuario = (Integer)sesion.getAttribute("rolNumber");
+        Collection collection = (Collection)request.getAttribute("todosTerminales");	   
+  
+  %>
  
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
@@ -57,7 +70,7 @@
                             <th>Modelo</th>
                             <th>Usuario</th>                            
                             <th>Linea</th>
-                            <th>Acciones <a href="telfijos/formTelFijos"><button class="btn btn-info" >Insertar</button></a> </th>                            
+                            <th>Acciones <% if( rolNumberUsuario==0){ %><a href="telfijos/formTelFijos"><button class="btn btn-info" >Insertar</button></a> </th> <% } %>                            
                         </tr>
                     </thead>
                     <tbody>
@@ -83,12 +96,14 @@
                                                     <%= element.getLineaidLinea().getNumero() %>
                                                  <% }else{ %> Sin asignar <% } %>
                                             </td>
-                                            <td>
+                                            <td> <% if( rolNumberUsuario==0){ %>
                                                 <!-- AVISO AL LECTOR: NO ME GUSTA TENER QUE USAR ANLCA "A" Y METODO GET ... 
                                                         ES FEO, PERO TAMPOCO QUIERO USAR JAVASCIPT  -->
                                                 <a href="telfijos/formEditar?idTerminalFijo=<%= element.getIdTerminalFijo() %>"<button class="btn" >Editar</button>
                                                 <%--<a href="telfijos/formEliminar?idTerminalFijo=<%= element.getIdTerminalFijo() %>"<button class="btn btn-danger" >Eliminar</button>   --%>
                                                 <a href="#advertencia-eliminar" role="button" codigoTerminal="<%= element.getCodigo() %>"  idTerminal="<%= element.getIdTerminalFijo() %>" class="btn btn-danger eliminarEnTabla" data-toggle="modal">Eliminar</a>
+                                                
+                                                    <% } %>
                                             </td>
                                         </tr>
                               

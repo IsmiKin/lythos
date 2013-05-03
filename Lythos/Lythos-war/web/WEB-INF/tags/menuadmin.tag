@@ -1,11 +1,10 @@
 <%-- 
-    Document   : menuuser
-    Created on : 23-abr-2013, 13:22:04
-    Author     : IsmiKin
-    Description: menu de la derecha para el usuario (rol usuario)
+    Document   : menuadmin
+    Created on : 03-may-2013, 13:42:49
+    Author     : IsmiKinPorti
 --%>
 
-<%@tag description="menu de la derecha para el usuario (rol usuario)" pageEncoding="UTF-8"%>
+<%@tag description="menu de la derecha para el usuario (rol admin)" pageEncoding="UTF-8"%>
 
     <div id="menuderecha" class="span4 column">
             <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-polaroid" />
