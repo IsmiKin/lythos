@@ -33,17 +33,13 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-    public String getUserByNickname(String nickname){
-        int idUser=  autFac.getIdByNickname(nickname);
-        Query consulta = em.createQuery("SELECT u FROM Usuario u WHERE u.autorizacionidAutorizacion = :idUser ").setParameter("idUser", idUser);
-        List<Usuario> resultados = consulta.getResultList();
-        String salida = null;
-        if(resultados.size()>0)
-            salida = resultados.get(0).toString();
-        return "";
-        //return Integer.parseInt(salida);
-        //int idUser = 
+    public Usuario getUserByAuto(Autorizacion autori){
+        System.out.println(autori.getIdAutorizacion());
+        Query consulta = em.createQuery("SELECT u FROM Usuario u WHERE u.autorizacionidAutorizacion = :idUser ").setParameter("idUser", autori);
+        Usuario resultado = (Usuario) consulta.getSingleResult();        
+        return resultado;
         
     }
+   
     
 }

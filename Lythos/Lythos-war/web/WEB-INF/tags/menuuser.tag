@@ -11,6 +11,12 @@
             <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-polaroid" />
                 <ul class="nav nav-list">
                         <li class="nav-header">
+                                Mi cuenta
+                        </li>
+                        <li >
+                               <a href="logout">Cerrar Sesion</a>
+                        </li>
+                        <li class="nav-header">
                                 Mis cosas
                         </li>
                         <li class="active">
