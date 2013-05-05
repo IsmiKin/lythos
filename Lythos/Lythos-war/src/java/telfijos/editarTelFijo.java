@@ -68,9 +68,9 @@ public class editarTelFijo extends HttpServlet {
         
         terminalfijoFacade.edit(editado);
         
-        RequestDispatcher rd=null; 
+        RequestDispatcher rd=null;               
         
-        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin");       
+        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin?operacionrealizada=editado&codigousado="+Codigo);       
         rd.forward(request, response);
         
         try {

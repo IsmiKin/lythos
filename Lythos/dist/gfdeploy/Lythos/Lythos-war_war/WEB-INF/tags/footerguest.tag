@@ -34,6 +34,10 @@
     
     </div>    
     
+<%
+        String Nickname = request.getParameter("nickname");
+%>
+       
      <!-- VENTANA DE LOGIN -->
             <div id="modalLogin" class="modal hide fade" tabindex="-1" role="dialog">
                 <div class="modal-header">
@@ -42,24 +46,24 @@
                 </div>
                 <div class="modal-body">
                   <center>
-                    <form id="loginForm" action="/login" method="POST">
+                    <form id="loginForm" action="login" method="POST">
                       
                       <!--<div id="control-user" class="control-group">
                         <!--<label class="control-label" for="user">Nombre de Usuario </label>-->
-                        <input type="text" id="user" name="user" class="input-block-levelt" placeholder="Nombre de Usuario" title="Nombre de usuario" required>
+                        <input type="text" id="user" name="nickname" class="input-block-levelt" placeholder="Nombre de Usuario" title="Nombre de usuario" required></input>
 
                       <!--</div>                  -->
                       <br>
                       
                      <!-- <div id="control-pass" class="control-group">
                        <!-- <label class="control-label" for="pass">Contraseña </label>-->
-                        <input id="pass" name="pass" type="password" class="input-block-levelt" placeholder="Contraseña" title="Tu contraseña" required><br>
+                        <input id="pass" name="pass" type="password" class="input-block-levelt" placeholder="Contraseña" title="Tu contraseña" required></input><br>
                                 <button id="btnIniciarSesion" type="submit" class="btn btn-success" >Iniciar Sesion</button>
                     </div> 
                       <!--</div>-->
 
                         <div class="modal-footer">
-                        Proyecto Hermes - 2013
+                        Proyecto Lythos - 2013
                       </div>
                    
                     </div>

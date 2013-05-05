@@ -19,15 +19,21 @@
                     response.sendRedirect("errorLogin.jsp");
             } else {
                 // Already created. 
-                if(nivelSeguridad>rolNumber){                    
+                if(rolNumber<=nivelSeguridad){                    
                     
-                if(rol.equals("Administrador")){ %>
-                            <shared:headeradmin></shared:headeradmin>
-           <%  }
-                }
-                else
-                    response.sendRedirect("errorLogin.jsp");
-                
+                        if(rol.equals("Administrador")){ %>
+                                        <shared:headeradmin></shared:headeradmin>
+                          <%  } else if(rol.equals("Controlador")){ %>
+                                        <shared:headercontrolador></shared:headercontrolador>
+                          <%  } else if(rol.equals("JefeServicio")){   %>
+                                        <shared:headerjefe></shared:headerjefe> 
+                          <%  } else if(rol.equals("Usuario")){    %> 
+                                      <shared:headerusuario></shared:headerusuario>
+                          <%  }
+                    }
+                    else{
+                        response.sendRedirect("/Lythos-war/errorPermission.jsp"); 
+                    }
                 
             }
      %>

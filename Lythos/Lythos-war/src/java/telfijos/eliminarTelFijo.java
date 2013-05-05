@@ -46,7 +46,7 @@ public class eliminarTelFijo extends HttpServlet {
         
         RequestDispatcher rd=null; 
          
-        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin");       
+        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin?operacionrealizada=eliminado&codigousado="+request.getParameter("codigoAEliminar"));       
         rd.forward(request, response);
         
         try {

@@ -5,6 +5,7 @@
 package dao;
 
 import entidades.Autorizacion;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,6 +52,14 @@ public class AutorizacionFacade extends AbstractFacade<Autorizacion> {
         int salida = -1;
         if(resultado!=null)
             salida = resultado.getIdAutorizacion();
+        return salida;
+    }
+    
+    public Autorizacion getAutoByNickname(String nickname){
+        Query queryAuto= em.createNamedQuery("Autorizacion.findByNickname");
+        queryAuto.setParameter("nickname", nickname);
+        
+        Autorizacion salida =(Autorizacion) queryAuto.getSingleResult();
         return salida;
     }
     

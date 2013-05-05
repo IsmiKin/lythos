@@ -23,7 +23,7 @@
                                 Mis cosas
                         </li>
                         <li class="active">
-                                <a href="#">Telefonos Fijos</a>
+                              <a href="telfijos/mistelfijos?nickname=<%= request.getSession().getAttribute("nickname") %>">Telefonos Fijos</a> <!-- No usamos el idUsuario directamente por seguridad -->
                         </li>
                         <li>
                                 <a href="#">Telefonos Moviles</a>

@@ -10,6 +10,8 @@ import dao.TerminalfijoFacade;
 import dao.UsuarioFacade;
 import entidades.Terminalfijo;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -18,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -52,7 +55,7 @@ public class insertarTelFijo extends HttpServlet {
         String Codigo = request.getParameter("Codigo");
         String Modelo = request.getParameter("Modelo");
         String Usuario = request.getParameter("Usuario");
-        String Linea = request.getParameter("Linea");
+        String Linea = request.getParameter("Linea");                
         
         Terminalfijo nuevo = new Terminalfijo();
         
@@ -69,7 +72,7 @@ public class insertarTelFijo extends HttpServlet {
         
         RequestDispatcher rd=null; 
         
-        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin");       
+        rd = this.getServletContext().getRequestDispatcher("/telfijos/admin?operacionrealizada=insertado&codigousado="+Codigo);       
         rd.forward(request, response);
         
         try {

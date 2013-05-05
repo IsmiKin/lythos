@@ -19,9 +19,22 @@
 <!-- http://www.kendoui.com/jsp/tags -->
 <%@taglib prefix="kendo" uri="http://www.kendoui.com/jsp/tags"%>
 
-    <shared:headerlibs></shared:headerlibs>
-    <shared:headeradmin></shared:headeradmin>
+     <!-- LIBRERIAS ESENCIALES -->
+    <shared:headerlibs></shared:headerlibs>  
+        
+    <!--   La variable nivelSeguridad es requerida en menuBarRol.jsp para verificar que tipo de Rol puede acceder a esta pagina 
+            Si la pagina es publica debes usar el nivel de Seguridad 4 (invitado) 
+            Dependiendo del rol lanzara un menubar u otro
+       -->
     
+    <% int nivelSeguridad = 0; %>
+    
+    <%@include  file="menuBarRol.jsp" %>
+               
+     <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby 
+           Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
+     
+     
     
   <%    
       Collection modelos = (Collection)request.getAttribute("modelos");	   
@@ -33,7 +46,46 @@
      <!-- Este script es para sombrear la opción en la que estamos sin tener que cambiar la cabecera... enjoy it baby -->
      <!-- Debes ir a "header-rol" y mirar las clases que tienen los li de menu-up -->
      
-     <script>$(".menu-terminales").addClass("active");</script>
+     <script>
+         $(".menu-terminales").addClass("active");
+         
+          $(document).ready(function(){
+                    
+                    var existe = false;
+                    var codigoActual =$("#inputCodigo").val();
+                    
+                    $("#inputCodigo").change(checkingCodigo);
+                    $("#btnEditarForm").click(function(){                           
+                            if(!existe)
+                                $(".form-insertar").submit();                                                                                            
+                        });
+                    
+                    $("#inputCodigo").tooltip({'trigger':'hover', 'title': '<b>Obligatorio</b>.<br>Campo <i>unico</i>, no puede repetirse', 'placement':'right', 'html':true});
+                        
+                    function checkingCodigo(){
+                        var codigo = $(this).val();
+                        
+                        $.ajax({
+                            type:"POST", url:"telfijos/checkTelFijo", data:{ codigo:codigo }, success: function(message){                                                                
+                                
+                                if( (message=="existe") && ( $("#inputCodigo").val() != codigoActual ) ){                                        
+                                        $(".codigoexistente").text( codigo);                        
+                                        $(".checkexistente").fadeIn("slow");
+                                        existe=true;
+                                       
+                                }
+                                else{
+                                        $(".checkexistente").fadeOut("slow");
+                                       existe=false;
+                                }
+                            }
+                        });
+                       
+                    }
+                    
+                    
+                });
+     </script>
      
     
     
@@ -44,7 +96,8 @@
                 
                 <form class="form-insertar" action="telfijos/editar" method="POST">
                     <input type="hidden" name="idTerminal" value="<%= terminal.getIdTerminalFijo() %>">
-                    <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" type="text" class="input-large" placeholder="Codigo" required value="<%= terminal.getCodigo() %>" /><br>
+                       <div class="checkexistente mensaje-operacion alert-error alert-block  " hidden="hidden"><button type="button" class="close" data-dismiss="alert">×</button><h4>¡Codigo ya existente!</h4><br>El codigo <strong><span class="codigoexistente"> </span></strong> ya existe y no pueden repetirse, use otro.</div>
+                    <label for="Codigo"><strong>Codigo</strong></label><input name="Codigo" id="inputCodigo" type="text" class="input-large" placeholder="Codigo" required value="<%= terminal.getCodigo() %>" /><br>
                     <label for="Modelo"><strong>Modelo</strong></label>                                       
                     <select name="Modelo">
                         <option></option>
@@ -74,14 +127,13 @@
                     
                     <br>
                     <button class="btn btn-info" type="submit">Editar</button>
-                    <a href="telfijos/admin"<button class="btn btn-danger" type="button">Cancelar</button></a>
+                    <a href="telfijos/admin"<button id="btnEditarForm" class="btn btn-danger" type="button">Cancelar</button></a>
                     
                 </form>
                 
-            </div>
-   
-
-    <shared:menuuser></shared:menuuser>
+            </div>  
+ 
+    <%@include  file="menuRightRol.jsp" %>  
 
     </div>
     

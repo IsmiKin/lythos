@@ -48,6 +48,7 @@
              $(".eliminarEnTabla").click(function(){                 
                  $("#idAEliminar").val($(this).attr("idterminal"));
                  $(".elimCodigo").text($(this).attr("codigoterminal"));
+                 $("#codigoAEliminar").val($(this).attr("codigoterminal"));
              });
              
          });
@@ -61,7 +62,15 @@
                 
                 <center><img src="img/admintelfijos.png"></center><br>
                 
-                <table class="table table-hover">
+                <br>
+                
+                <% if(request.getParameterMap().containsKey("operacionrealizada") ){ %>
+                    <div class="mensaje-operacion alert-success alert-block "><button type="button" class="close" data-dismiss="alert">×</button><h4>¡Operacion realizada con exito!</h4><br>Se ha <strong> ${operacionrealizada} </strong> con exito el Terminal Fijo con codigo <strong>${codigousado}</strong></div>
+                    
+               <%} %>
+                
+                
+                <table  class="admin-table table table-hover">
                     <caption>Tabla para administración de Terminales Fijos</caption>
                     <thead>
                         <tr>
@@ -129,6 +138,7 @@
                       <form id="eliminarFinal" action="telfijos/eliminar" method="POST">
                           <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
                           <input type="hidden" name="idAEliminar" id="idAEliminar" >
+                          <input type="hidden" name="codigoAEliminar" id="codigoAEliminar" >
                           <button type="submit"  class="btn btn-danger">Eliminar</a>
                       </form>
                       

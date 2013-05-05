@@ -16,46 +16,43 @@
 <shared:headerlibs></shared:headerlibs>
 <shared:headerguest></shared:headerguest>
 
-<%
-        List<Linea>lista = (List<Linea>)request.getAttribute("listaClientes");
-        
-%>
-       
     
 <script src="js/pages/index.js"></script>
 
 <div id="wrap">
 
     <div class="row  info-index">
-           <kendo:datePicker name="datePicker"></kendo:datePicker>
+           
         <div  class="span12">
-            <center><p class="text-center welcome-title"><h1>¡Bienvenido!</h1></p></center>
+            <center><p class="text-center welcome-title"><h1>¡Ups! Parece que ha ocurrido un error</h1></p></center>
         </div>
         
             <div class="row-fluid">
         
                 <div class="span4">
-                    <img class="img-rounded" src="img/business-people-2_s.png"  >
+                    <img class="img-rounded" src="img/dead_smile.png"  >
                 </div>
 
 
                 <div class="span8 textospan">
-                    <strong>¡Bienvenido al Proyecto !</strong><br><br>
-                   A través de esta plataforma podra organizar y ver sus facturas.       <br><br>
+                    <strong>¡Ha habido un problema al entrar en la plataforma  !</strong><br><br>
+                   Pruebe a escribir de nuevo su cuenta de usuario y contraseña      <br><br>
+                                                         
+                   
+                   <form id="loginForm" action="login" method="POST">
+                        <input type="text" id="user" name="nickname" class="input-block-levelt" placeholder="Nombre de Usuario" title="Nombre de usuario" required
+                              value="${nickname}">
+                        <br>
+                        <input id="pass" name="pass" type="password" class="input-block-levelt" placeholder="Contraseña" title="Tu contraseña" required>
+                        <br>
+                        <button id="btnIniciarSesion" type="submit" class="btn btn-success" >Iniciar Sesion</button>
+                   </form>
                    
                    <ul>
                        <li>Si tienes un <b>problema tecnico</b> ponte en contacto con nosotros a través de la Oficina de Soporte Técnico o envienos un correo
                             <a href="contacto.jsp" class="btn btn-warning">Contactar</a>
-                       </li>
-                       <li> 
-                           Si aun no tienes plan contratado con nosotros te invitamos a que te pases por nuestros servicios
-                           <a href="servicios.jsp" class="btn btn-info">Servicios</a>
-                       </li>
-                       <li>
-                           Si ya disfrutas de nuestros Servicios, ¡Inicia Sesion!
-                           <a href="servicios.jsp" class="btn btn-success">Iniciar Sesion</a>
-                       </li>
-                        
+                       </li>                       
+                                             
                    </ul>
                    
                 </div>

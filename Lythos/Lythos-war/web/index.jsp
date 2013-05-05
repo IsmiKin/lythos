@@ -18,6 +18,7 @@
 
 <%
         List<Linea>lista = (List<Linea>)request.getAttribute("listaClientes");        
+        
 %>
        
     

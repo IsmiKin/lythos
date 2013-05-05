@@ -31,7 +31,7 @@
     <div class="content-main row-fluid">
             <div class="content-main-left span8 column">
             </div>
-
+  
     
     <%@include  file="menuRightRol.jsp" %>  
 

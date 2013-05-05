@@ -49,6 +49,12 @@ public class adminFijos extends HttpServlet {
         
         RequestDispatcher rd=null;
         
+        if(request.getParameterMap().containsKey("operacionrealizada"))
+            request.setAttribute("operacionrealizada", request.getParameter("operacionrealizada"));
+        
+        if(request.getParameterMap().containsKey("codigousado"))
+            request.setAttribute("codigousado", request.getParameter("codigousado"));
+        
         rd = this.getServletContext().getRequestDispatcher("/admintelfijos.jsp");        
         rd.forward(request, response);
         
