@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
+
 import dao.TerminalfijoFacade;
 import javax.ejb.EJB;
 
@@ -26,7 +26,7 @@ public class checkTerminalFijo extends HttpServlet {
     @EJB
     private TerminalfijoFacade terminalfijoFacade;
 
-        private Gson _gson = null;
+        
 
     
     /**

@@ -8,6 +8,7 @@ import entidades.Municipio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +26,14 @@ public class MunicipioFacade extends AbstractFacade<Municipio> {
 
     public MunicipioFacade() {
         super(Municipio.class);
+    }
+    
+    public Municipio getById(int idMunicipio){
+        Query queryAuto= em.createNamedQuery("Municipio.findByIdMunicipio");
+        queryAuto.setParameter("idMunicipio", idMunicipio);
+        
+        Municipio salida =(Municipio) queryAuto.getSingleResult();
+        return salida;
     }
     
 }

@@ -41,7 +41,7 @@
      
      <script>
          $(document).ready(function(){
-             $(".menu-terminales").addClass("active");
+             $(".menu-right-telfijo").addClass("active");
              
              // jQuery Time Beaches
              

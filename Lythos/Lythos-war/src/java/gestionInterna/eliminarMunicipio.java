@@ -2,13 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package usuarios;
+package gestionInterna;
 
-import dao.UsuarioFacade;
-import entidades.Usuario;
+import entidades.Municipio;
+import dao.MunicipioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IsmiKinPorti
+ * @author Pablo
  */
-@WebServlet(name = "adminUsuarios", urlPatterns = {"/usuarios/admin"})
-public class adminUsuarios extends HttpServlet {
+@WebServlet(name = "eliminarMunicipio", urlPatterns = {"/eliminarMunicipio"})
+public class eliminarMunicipio extends HttpServlet {
     @EJB
-    private UsuarioFacade usuarioFacade;
-
+    private MunicipioFacade MunicipioFacade;
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -40,18 +39,18 @@ public class adminUsuarios extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+       
+        Municipio mun = MunicipioFacade.find(Integer.parseInt(request.getParameter("idAEliminar")));
         
-        List<Usuario> todos = usuarioFacade.findAll();
+        MunicipioFacade.remove(mun);
+                
         
-        request.setAttribute("todosUsuarios", todos);
-        
-        RequestDispatcher rd=null;
-        
-        rd = this.getServletContext().getRequestDispatcher("/adminusuarios.jsp");        
+        RequestDispatcher rd=null; 
+         
+        rd = this.getServletContext().getRequestDispatcher("/AdminMunicipios?operacionrealizada=eliminado&nombreusado="+mun.getNombre());       
         rd.forward(request, response);
         
         try {
-            /* TODO output your page here. You may use following sample code. */
             
         } finally {            
             out.close();

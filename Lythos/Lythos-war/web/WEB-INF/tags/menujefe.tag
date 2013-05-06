@@ -22,7 +22,7 @@
                         <li class="nav-header">
                                 Mis cosas
                         </li>
-                        <li class="active">
+                        <li class="menu-right-telfijo">
                                <a href="telfijos/mistelfijos?nickname=<%= request.getSession().getAttribute("nickname") %>">Telefonos Fijos</a> <!-- No usamos el idUsuario directamente por seguridad -->
                         </li>
                         <li>

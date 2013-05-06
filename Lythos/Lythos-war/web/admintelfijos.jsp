@@ -53,9 +53,7 @@
              
          });
          
-     </script>
-     
-    
+     </script>        
     
     <div class="content-main row-fluid">
             <div class="content-main-left span8 column">
@@ -65,8 +63,7 @@
                 <br>
                 
                 <% if(request.getParameterMap().containsKey("operacionrealizada") ){ %>
-                    <div class="mensaje-operacion alert-success alert-block "><button type="button" class="close" data-dismiss="alert">×</button><h4>¡Operacion realizada con exito!</h4><br>Se ha <strong> ${operacionrealizada} </strong> con exito el Terminal Fijo con codigo <strong>${codigousado}</strong></div>
-                    
+                        <div class="mensaje-operacion alert-success alert-block "><button type="button" class="close" data-dismiss="alert">×</button><h4>¡Operacion realizada con exito!</h4><br>Se ha <strong> ${operacionrealizada} </strong> con exito el Terminal Fijo con codigo <strong>${codigousado}</strong></div>                    
                <%} %>
                 
                 
@@ -147,7 +144,7 @@
               </div>
      
                       
-    <shared:menuuser></shared:menuuser>
+    <%@include  file="menuRightRol.jsp" %>  
 
     </div>
     
